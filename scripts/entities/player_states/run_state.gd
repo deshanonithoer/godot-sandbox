@@ -1,5 +1,10 @@
 class_name RunState
 extends MovementState
+
+func enter(_prev: PlayerState) -> void:
+	move_speed_multiplier = 1.3
+	animation_state = StateEnum.Value.RUN
+	
 func physics_update(delta):
 	if not Input.is_action_pressed("sprint"):
 		player.fsm.change_state(StateEnum.Value.WALK)
