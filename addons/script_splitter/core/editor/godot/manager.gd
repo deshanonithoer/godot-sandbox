@@ -8,28 +8,29 @@ extends RefCounted
 #	author:		"Twister"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-const CreateTool = preload("res://addons/script_splitter/core/editor/application/create_tool.gd")
-const UpdateMetadata = preload("res://addons/script_splitter/core/editor/application/update_metadata.gd")
-const FocusTool = preload("res://addons/script_splitter/core/editor/application/focus_tool.gd")
-const SelectByIndex = preload("res://addons/script_splitter/core/editor/application/select_by_index.gd")
-const FocusByTab = preload("res://addons/script_splitter/core/editor/application/focus_by_tab.gd")
-const ReparentTool = preload("res://addons/script_splitter/core/editor/application/reparent_tool.gd")
-const MergeTool = preload("res://addons/script_splitter/core/editor/application/merge_tool.gd")
-const SplitColumn = preload("res://addons/script_splitter/core/editor/application/split_column.gd")
-const SplitRow = preload("res://addons/script_splitter/core/editor/application/split_row.gd")
-const RemoveByTab = preload("res://addons/script_splitter/core/editor/application/remove_by_tab.gd")
-const RefreshWarnings = preload("res://addons/script_splitter/core/editor/application/refresh_warnings.gd")
-const UpdateListSelection = preload("res://addons/script_splitter/core/editor/application/update_list_selection.gd")
-const SwapTab = preload("res://addons/script_splitter/core/editor/application/swap_tab.gd")
-const RmbMenu = preload("res://addons/script_splitter/core/editor/application/rmb_menu.gd")
-const UserTabClose = preload("res://addons/script_splitter/core/editor/application/user_tab_close.gd")
-const Io = preload("res://addons/script_splitter/core/editor/application/io.gd")
+const CreateTool = preload("./../../../core/editor/application/create_tool.gd")
+const UpdateMetadata = preload("./../../../core/editor/application/update_metadata.gd")
+const FocusTool = preload("./../../../core/editor/application/focus_tool.gd")
+const SelectByIndex = preload("./../../../core/editor/application/select_by_index.gd")
+const FocusByTab = preload("./../../../core/editor/application/focus_by_tab.gd")
+const ReparentTool = preload("./../../../core/editor/application/reparent_tool.gd")
+const MergeTool = preload("./../../../core/editor/application/merge_tool.gd")
+const SplitColumn = preload("./../../../core/editor/application/split_column.gd")
+const SplitRow = preload("./../../../core/editor/application/split_row.gd")
+const RemoveByTab = preload("./../../../core/editor/application/remove_by_tab.gd")
+const RefreshWarnings = preload("./../../../core/editor/application/refresh_warnings.gd")
+const UpdateListSelection = preload("./../../../core/editor/application/update_list_selection.gd")
+const SwapTab = preload("./../../../core/editor/application/swap_tab.gd")
+const RmbMenu = preload("./../../../core/editor/application/rmb_menu.gd")
+const UserTabClose = preload("./../../../core/editor/application/user_tab_close.gd")
+const Io = preload("./../../../core/editor/application/io.gd")
+const CustomSplit = preload("./../../../core/editor/application/custom_split.gd")
 
-const ToolDB = preload("res://addons/script_splitter/core/editor/database/tool_db.gd")
-const Task = preload("res://addons/script_splitter/core/editor/coroutine/task.gd")
+const ToolDB = preload("./../../../core/editor/database/tool_db.gd")
+const Task = preload("./../../../core/editor/coroutine/task.gd")
 
-const BaseContainer = preload("res://addons/script_splitter/core/base/container.gd")
-const BaseList = preload("res://addons/script_splitter/core/base/list.gd")
+const BaseContainer = preload("./../../../core/base/container.gd")
+const BaseList = preload("./../../../core/base/list.gd")
 
 
 signal update_request()
@@ -51,6 +52,8 @@ var _reparent_tool : ReparentTool = null
 var _update_list_selection : UpdateListSelection = null
 var _rmb_menu : RmbMenu = null
 var _user_tab_close : UserTabClose = null
+var _custom_split : CustomSplit = null
+
 var io : Io = null
 var swap_tab : SwapTab = null
 
@@ -78,12 +81,13 @@ func _app_setup() -> void:
 	swap_tab = SwapTab.new(self, _tool_db)
 	_rmb_menu = RmbMenu.new(self, _tool_db)
 	_user_tab_close = UserTabClose.new(self, _tool_db)
+	_custom_split = CustomSplit.new(self, _tool_db)
+	
 	io = Io.new(self, _tool_db)
 	
 	split_column = SplitColumn.new(self, _tool_db)
 	split_row = SplitRow.new(self, _tool_db)
 	refresh_warnings = RefreshWarnings.new(self, _tool_db)
-	
 	
 	_base_list.update_selections_callback = _update_list_selection.execute
 	
@@ -103,11 +107,13 @@ func _init(base_container : BaseContainer, base_list : BaseList) -> void:
 #	
 	_base_list.updated.connect(update_all_metadata)
 	_base_list.item_selected.connect(_on_item_selected)
+	_base_list.move_item.connect(_move_item_list)
 	_base_container.update.connect(update_metadata)
 	_base_container.focus_by_tab.connect(_on_focus_tab)
 	_base_container.remove_by_tab.connect(_on_remove_tab)
 	
 	_base_container.swap_tab.connect(_onswap_tab)
+	_base_container.same_swap_tab.connect(_on_same_swap_tab)
 	_base_container.change_container.connect(update_list)
 
 	_base_container.rmb_click.connect(_on_tab_rmb)
@@ -185,6 +191,9 @@ func reset() -> void:
 func _onswap_tab(from : Container, index : int, to : Container) -> void:
 	swap_tab.execute([from, index, to])
 	
+func _on_same_swap_tab(from : Container, index : int, type : StringName) -> void:
+	_custom_split.execute([from, index, type])
+	
 func _on_focus_tab(tab : TabContainer, index : int) -> void:
 	_focus_by_tab.execute([tab, index])
 	
@@ -198,7 +207,7 @@ func is_valid_item_index(index : int) -> bool:
 	return index > -1 and _base_list.item_count() > index and !_base_list.get_item_tooltip(index).is_empty() and !_base_list.get_item_text(index).is_empty()
 
 func update() -> bool:
-	if !_base_container.is_active():
+	if !_base_container.has_method(&"is_active") or !_base_container.is_active():
 		return false
 		
 	_task.update()
@@ -369,3 +378,27 @@ func right_tab_close(value : Variant) -> void:
 	
 func others_tab_close(value : Variant) -> void:
 	_user_tab_close.execute([value, 0])
+
+func _move_item_list(from : int, to : int) -> void:
+	move_item_container(null, from, to)
+
+func move_item_container(container : TabContainer, from : int, to : int) -> void:
+	var vfrom : int = -1
+	var vto : int = -1
+	
+	if container == null:
+		vfrom = from
+		vto = to
+	else:
+		for x : ToolDB.MickeyTool in _tool_db.get_tools():
+			if x.get_root() == container:
+				var _idx : int = x.get_control().get_index()
+				if _idx == from:
+					vfrom = x.get_index()
+				elif _idx == to:
+					vto = x.get_index()
+	
+	if vfrom == -1 or vto == -1:
+		return
+		
+	_base_container.move_container(vfrom, vto)

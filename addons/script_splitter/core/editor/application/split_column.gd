@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/script_splitter/core/editor/app.gd"
+extends "./../../../core/editor/app.gd"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #	Script Splitter
 #	https://github.com/CodeNameTwister/Script-Splitter
@@ -25,6 +25,8 @@ func execute(value : Variant = null) -> bool:
 			if pth == list.get_item_tooltip(x):
 				_tool = _tool_db.get_tool_id(x)
 				break
+	elif value is MickeyTool:
+		_tool = value
 		
 	if _tool == null:
 		if value is MickeyTool:

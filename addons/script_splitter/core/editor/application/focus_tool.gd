@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/script_splitter/core/editor/app.gd"
+extends "./../../../core/editor/app.gd"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #	Script Splitter
 #	https://github.com/CodeNameTwister/Script-Splitter
@@ -7,8 +7,7 @@ extends "res://addons/script_splitter/core/editor/app.gd"
 #	Script Splitter addon for godot 4
 #	author:		"Twister"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-const BaseList = preload("res://addons/script_splitter/core/base/list.gd")
-
+const BaseList = preload("./../../../core/base/list.gd")
 
 var unfocus_enabled : bool = true
 var unfocus_color : Color = Color.DARK_GRAY

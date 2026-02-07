@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnw04fwa0dswy"]
+
+[ext_resource type="PackedScene" uid="uid://b8o226mbqynfb" path="res://scenes/menu.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bi7rjrhoyhl53" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://c3dt6moup2qmm" path="res://scripts/components/multiplayer_spawner.gd" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://ccwo48indu1eu" path="res://scenes/player.tscn" id="4_fc0e3"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_e2o6t")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://ccwo48indu1eu")
+spawn_path = NodePath("../Players")
+script = ExtResource("3_feb5d")
+player_scene = ExtResource("4_fc0e3")
+
+[node name="Players" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Menu" parent="." instance=ExtResource("1_80nbo")]
+unique_name_in_owner = true
+position = Vector2(0, 1)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(576, 288)
+
+[connection signal="host_game" from="Menu" to="." method="_on_menu_host_game"]
+[connection signal="join_game" from="Menu" to="." method="_on_menu_join_game"]

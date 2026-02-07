@@ -7,14 +7,14 @@ extends MarginContainer
 #	Script Splitter addon for godot 4
 #	author:		"Twister"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-const SplitterRoot = preload("res://addons/script_splitter/core/ui/splitter/splitter_root.gd")
-const HandlerContainer = preload("res://addons/script_splitter/core/base/container.gd")
+const SplitterRoot = preload("./../../../core/ui/splitter/splitter_root.gd")
+const HandlerContainer = preload("./../../../core/base/container.gd")
 const BaseContainerItem = preload("splitter_item.gd")
 
-const SplitterEditorContainer = preload("res://addons/script_splitter/core/ui/splitter/splitter_editor_container.gd")
+const SplitterEditorContainer = preload("./../../../core/ui/splitter/splitter_editor_container.gd")
 
-const Overlay = preload("res://addons/script_splitter/core/ui/splitter/taby/overlay.gd")
-const CODE_NAME_TWISTER = preload("res://addons/script_splitter/assets/github_CodeNameTwister.svg")
+const Overlay = preload("./../../../core/ui/splitter/taby/overlay.gd")
+const CODE_NAME_TWISTER = preload("./../../../assets/github_CodeNameTwister.svg")
 
 var _handler_container : HandlerContainer = null
 var _base_container : TabContainer = null
@@ -76,10 +76,12 @@ func initialize(container : TabContainer, handler_container : HandlerContainer) 
 	
 	var io : Node = _handler_container.get_io_bar()
 	if io.get_parent() == null:
-		vspl.add_child(_handler_container.get_io_bar())
+		vspl.add_child(io)
 	else:
-		#vspl.add_child(io.duplicate())
-		pass
+		io = HandlerContainer.IoBar.new()
+		io.enable_vertical_split = false
+		vspl.add_child(io)
+		
 	initialize_editor_contianer()
 	
 	_overlay = Overlay.new()
@@ -208,6 +210,10 @@ func dragged(tab : TabBar, is_drag : bool) -> void:
 				if is_instance_valid(container) and is_instance_valid(from):
 					if from != container:
 						_handler_container.swap_tab.emit(from, tab.current_tab, container)
+					else:
+						var type : StringName = _overlay.get_type_split()
+						if !type.is_empty():
+							_handler_container.same_swap_tab.emit(from, tab.current_tab, type)
 			
 func create_new_column() -> SplitterEditorContainer.Editor:
 	var item : BaseContainerItem = get_base_container_item(_last_editor_container)

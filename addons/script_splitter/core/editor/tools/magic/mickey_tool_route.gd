@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/script_splitter/core/editor/tools/magic/mickey_tool.gd"
+extends "./../../../../core/editor/tools/magic/mickey_tool.gd"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #	Script Splitter
 #	https://github.com/CodeNameTwister/Script-Splitter

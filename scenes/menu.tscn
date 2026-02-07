@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8o226mbqynfb"]
+
+[ext_resource type="Script" uid="uid://2lotdn56vheh" path="res://scripts/ui/menu.gd" id="1_yqeox"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_yqeox")
+
+[node name="HostButton" type="Button" parent="."]
+offset_left = 472.0
+offset_top = 192.0
+offset_right = 670.0
+offset_bottom = 254.0
+text = "Host Game"
+
+[node name="JoinButton" type="Button" parent="."]
+offset_left = 472.0
+offset_top = 384.0
+offset_right = 670.0
+offset_bottom = 446.0
+text = "Join Game"
+
+[node name="IPAddressPrompt" type="LineEdit" parent="."]
+offset_left = 472.0
+offset_top = 304.0
+offset_right = 670.0
+offset_bottom = 335.0
+text = "127.0.0.1"
+placeholder_text = "IP Address"
+
+[node name="PortPrompt" type="LineEdit" parent="."]
+offset_left = 472.0
+offset_top = 344.0
+offset_right = 670.0
+offset_bottom = 375.0
+text = "8910"
+placeholder_text = "Port"
+
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="text_changed" from="IPAddressPrompt" to="." method="_on_lobby_id_prompt_text_changed"]

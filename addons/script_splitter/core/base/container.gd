@@ -8,10 +8,10 @@ extends RefCounted
 #	author:		"Twister"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-const SplitterContainer = preload("res://addons/script_splitter/core/ui/splitter/splitter_container.gd")
-const NControl = preload("res://addons/script_splitter/core/util/control.gd")
+const SplitterContainer = preload("./../../../script_splitter/core/ui/splitter/splitter_container.gd")
+const NControl = preload("./../../core/util/control.gd")
 
-const IoBar = preload("res://addons/script_splitter/core/ui/splitter/io/io_bar.gd")
+const IoBar = preload("./../../core/ui/splitter/io/io_bar.gd")
 
 signal update()
 signal focus_by_tab(root : TabContainer, index : int)
@@ -24,6 +24,8 @@ signal rmb_click(index : int, TabContainer)
 
 @warning_ignore("unused_signal")
 signal swap_tab(from : Container, index : int, to : Container)
+@warning_ignore("unused_signal")
+signal same_swap_tab(from : Container, index : int, type : StringName)
 
 var _editor_container : TabContainer = null
 var _editor_splitter_container : SplitterContainer = null
@@ -195,3 +197,9 @@ func reset() -> void:
 
 func get_current_container() -> TabContainer:
 	return _current_container
+
+func move_container(from : int, to : int) -> bool:
+	if _editor_container.get_child_count() > from and from > -1:
+		_editor_container.move_child(_editor_container.get_child(from), to)
+		return true
+	return false

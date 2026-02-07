@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/script_splitter/core/editor/tools/editor_tool.gd"
+extends "./../../../core/editor/tools/editor_tool.gd"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #	Script Splitter
 #	https://github.com/CodeNameTwister/Script-Splitter

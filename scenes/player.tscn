@@ -1,19 +1,42 @@
-[gd_scene load_steps=124 format=3 uid="uid://ccwo48indu1eu"]
+[gd_scene load_steps=125 format=3 uid="uid://ccwo48indu1eu"]
 
-[ext_resource type="Script" uid="uid://cu28a47w8wnu0" path="res://scripts/entities/player/player.gd" id="1_g2els"]
-[ext_resource type="Resource" uid="uid://3mwxvcv6dydt" path="res://scripts/entities/data/factions/player_faction.tres" id="2_f1ej7"]
+[ext_resource type="Script" uid="uid://cu28a47w8wnu0" path="res://scripts/player/player.gd" id="1_g2els"]
+[ext_resource type="Resource" uid="uid://3mwxvcv6dydt" path="res://scripts/data/factions/player_faction.tres" id="2_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://cahun45kgoknq" path="res://assets/sprites/Character/naked-man/Unarmed_Idle_without_shadow.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dcvngymdch1aw" path="res://assets/sprites/Character/naked-man/Unarmed_Walk_without_shadow.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://ct2ow1dixihp1" path="res://assets/sprites/Character/naked-man/Unarmed_Run_without_shadow.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://cgai2ht0va70a" path="res://assets/sprites/Character/naked-man/Sword_attack_without_shadow.png" id="4_qlg0r"]
-[ext_resource type="Script" uid="uid://bkaje1gkgx41q" path="res://scripts/entities/player_states/idle_state.gd" id="6_smehm"]
-[ext_resource type="Script" uid="uid://8kthqlcovnh4" path="res://scripts/entities/player_states/walk_state.gd" id="7_ur7pv"]
-[ext_resource type="Script" uid="uid://chwvrfuvn6dma" path="res://scripts/entities/player_states/attack_state.gd" id="8_y4r1p"]
-[ext_resource type="Script" uid="uid://cw5w4e3u8bk6l" path="res://scripts/entities/player/player_animation.gd" id="9_ur7pv"]
-[ext_resource type="Script" uid="uid://dhokwwp7qxfsp" path="res://scripts/entities/player_states/run_state.gd" id="9_y4r1p"]
-[ext_resource type="Script" uid="uid://67edu5vs5oap" path="res://scripts/entities/player_states/movement_state.gd" id="10_d2wvv"]
-[ext_resource type="Script" uid="uid://d3e13opot53uh" path="res://scripts/entities/components/state_machine.gd" id="12_3v2ag"]
-[ext_resource type="Script" uid="uid://br24sioo5jgmr" path="res://scripts/entities/components/damageable.gd" id="13_jej6c"]
+[ext_resource type="Script" uid="uid://bkaje1gkgx41q" path="res://scripts/states/idle_state.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://8kthqlcovnh4" path="res://scripts/states/walk_state.gd" id="7_ur7pv"]
+[ext_resource type="Script" uid="uid://chwvrfuvn6dma" path="res://scripts/states/attack_state.gd" id="8_y4r1p"]
+[ext_resource type="Script" uid="uid://cw5w4e3u8bk6l" path="res://scripts/player/player_animation.gd" id="9_ur7pv"]
+[ext_resource type="Script" uid="uid://dhokwwp7qxfsp" path="res://scripts/states/run_state.gd" id="9_y4r1p"]
+[ext_resource type="Script" uid="uid://67edu5vs5oap" path="res://scripts/states/movement_state.gd" id="10_d2wvv"]
+[ext_resource type="Script" uid="uid://d3e13opot53uh" path="res://scripts/components/state_machine.gd" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://br24sioo5jgmr" path="res://scripts/components/damageable.gd" id="13_jej6c"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f1ej7"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:max_health")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("AnimatedSprite2D:animation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite2D:frame")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:health")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath(".:id")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1da1t"]
 atlas = ExtResource("4_qlg0r")
@@ -860,6 +883,9 @@ height = 12.0
 motion_mode = 1
 script = ExtResource("1_g2els")
 faction = ExtResource("2_f1ej7")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_f1ej7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -12)
