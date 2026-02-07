@@ -1,6 +1,7 @@
 class_name Player
 extends Entity
 
+@onready var name_tag: Label = %NameTag
 @onready var walk_state: WalkState = $Scripts/StateMachine/WalkState
 @onready var attack_state: AttackState = $Scripts/StateMachine/AttackState
 @onready var run_state: RunState = $Scripts/StateMachine/RunState
@@ -11,6 +12,7 @@ extends Entity
 
 #region Player state management
 
+@export var player_name: String
 var last_direction := Vector2.DOWN
 var last_resolved_direction: DirectionEnum.Value = DirectionEnum.Value.DOWN
 
@@ -20,6 +22,8 @@ var last_resolved_direction: DirectionEnum.Value = DirectionEnum.Value.DOWN
 @export_storage var attack_direction := Vector2.ZERO
 
 func _ready():
+	name_tag.text = player_name
+	
 	fsm.entity = self
 	fsm.states = {
 		StateEnum.Value.IDLE: idle_state,

@@ -35,6 +35,13 @@ offset_bottom = 375.0
 text = "8910"
 placeholder_text = "Port"
 
+[node name="NamePrompt" type="LineEdit" parent="."]
+offset_left = 472.0
+offset_top = 264.0
+offset_right = 670.0
+offset_bottom = 295.0
+placeholder_text = "Nickname"
+
 [connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="text_changed" from="IPAddressPrompt" to="." method="_on_lobby_id_prompt_text_changed"]

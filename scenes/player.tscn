@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://ccwo48indu1eu"]
+[gd_scene load_steps=126 format=3 uid="uid://ccwo48indu1eu"]
 
 [ext_resource type="Script" uid="uid://cu28a47w8wnu0" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://3mwxvcv6dydt" path="res://scripts/data/factions/player_faction.tres" id="2_f1ej7"]
@@ -37,6 +37,12 @@ properties/5/replication_mode = 1
 properties/6/path = NodePath(".:id")
 properties/6/spawn = true
 properties/6/replication_mode = 1
+properties/7/path = NodePath("NameTag:text")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath(".:player_name")
+properties/8/spawn = true
+properties/8/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1da1t"]
 atlas = ExtResource("4_qlg0r")
@@ -879,6 +885,11 @@ animations = [{
 radius = 3.0
 height = 12.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_f1ej7"]
+font_size = 7
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_g2els")
@@ -888,7 +899,7 @@ faction = ExtResource("2_f1ej7")
 replication_config = SubResource("SceneReplicationConfig_f1ej7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -12)
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"attack_up"
 autoplay = "idle_down"
@@ -928,3 +939,13 @@ script = ExtResource("10_d2wvv")
 [node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("entity")]
 script = ExtResource("13_jej6c")
 entity = NodePath("..")
+
+[node name="NameTag" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -16.0
+offset_right = 15.0
+offset_bottom = 13.0
+label_settings = SubResource("LabelSettings_f1ej7")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
