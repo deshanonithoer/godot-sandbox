@@ -11,7 +11,7 @@ func take_damage(amount: int, source: Entity) -> void:
 		return
 
 	entity.request_damage.rpc_id(
-		entity.get_multiplayer_authority(),
+		1,
 		amount,
 		source.get_path()
 	)

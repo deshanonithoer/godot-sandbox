@@ -4,7 +4,7 @@ extends PlayerState
 @onready var player_animations: PlayerAnimation = %PlayerAnimations
 
 @export var speed := 200;
-@export var move_speed_multiplier := 1;
+@export var move_speed_multiplier := 1.0;
 var animation_state: StateEnum.Value
 
 func physics_update(_delta):

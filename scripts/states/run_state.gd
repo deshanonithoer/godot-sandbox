@@ -2,7 +2,7 @@ class_name RunState
 extends MovementState
 
 func enter(_prev: PlayerState) -> void:
-	move_speed_multiplier = 1.2
+	move_speed_multiplier = 1.5
 	animation_state = StateEnum.Value.RUN
 	
 func physics_update(delta):

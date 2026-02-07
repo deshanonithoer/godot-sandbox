@@ -20,7 +20,7 @@ NetworkManager="*res://network/network_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/script_splitter/plugin.cfg")
 
 [input]
 

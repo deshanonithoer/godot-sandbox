@@ -34,11 +34,9 @@ func _ready():
 	fsm.change_state(StateEnum.Value.IDLE)
 	
 func _unhandled_input(_event):
-	# Only the locally controlled player should ever read hardware input.
-	# This prevents remote players and the server from reacting to local input.
-	if not _is_local_player():
+	if multiplayer.get_unique_id() != id:
 		return
-
+	
 	# Gather input locally (keyboard / controller).
 	input_direction = Input.get_vector(
 		"move_left",
@@ -47,29 +45,34 @@ func _unhandled_input(_event):
 		"move_down"
 	)
 	
+	# Detect input
 	attack_direction = (self.get_global_mouse_position() - self.global_position).normalized()
 	wants_sprint = Input.is_action_pressed("sprint")
 	wants_attack = Input.is_action_pressed("attack")
 
 	# Send input intent to the authority (server).
 	# Using unreliable RPC because this is high-frequency data.
-	_send_input.rpc(
+	_send_input.rpc_id(
+		1,
 		input_direction, 
 		wants_sprint, 
 		wants_attack, 
 		attack_direction
 	)
 	
-func _is_local_player() -> bool:
-	return multiplayer.get_unique_id() == get_multiplayer_authority()
-	
-@rpc("any_peer", "unreliable")
+@rpc("any_peer", "call_local", "unreliable")
 func _send_input(
 	dir: Vector2, 
 	sprint: bool, 
 	attack: bool, 
 	attack_dir: Vector2
 ):
+	if !multiplayer.is_server():
+		return
+		
+	if multiplayer.get_remote_sender_id() != id:
+		return
+	
 	input_direction = dir
 	wants_sprint = sprint
 	wants_attack = attack
@@ -78,8 +81,8 @@ func _send_input(
 func _process(delta):
 	fsm.update(delta)
 
-func _physics_process(delta):
-	if !is_multiplayer_authority():
+func _physics_process(delta: float) -> void:
+	if !multiplayer.is_server():
 		return
 	fsm.physics_update(delta)
 	

@@ -22,7 +22,7 @@ func host_game(port: int = DEFAULT_PORT) -> void:
 	mp.multiplayer_peer = peer
 	
 	NetworkManager.connect_multiplayer_signals()
-	NetworkManager.peer_connected.emit(mp.get_unique_id())
+	NetworkManager.on_peer_connected(mp.get_unique_id())
 	
 func join_game(address: String = DEFAULT_ADDRESS, port: int = DEFAULT_PORT) -> void:
 	var enet := ENetMultiplayerPeer.new()

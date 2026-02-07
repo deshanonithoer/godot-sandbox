@@ -34,6 +34,9 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath(".:health")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath(".:id")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1da1t"]
 atlas = ExtResource("4_qlg0r")
@@ -881,7 +884,7 @@ motion_mode = 1
 script = ExtResource("1_g2els")
 faction = ExtResource("2_f1ej7")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_f1ej7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
