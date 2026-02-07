@@ -38,6 +38,8 @@ func _spawn_player_server(peer_id: int) -> void:
 		return
 
 	var player := player_scene.instantiate()
+	var nick = NetworkManager.nick_by_peer.get(peer_id, str(peer_id))
+	player.player_name = str(nick)
 	player.name = player_name
 	player.id = peer_id
 
