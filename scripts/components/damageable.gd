@@ -10,8 +10,7 @@ func take_damage(amount: int, source: Entity) -> void:
 	if entity == null or source == null:
 		return
 
-	entity.request_damage.rpc_id(
-		1,
+	entity.request_damage(
 		amount,
-		source.get_path()
+		source
 	)
