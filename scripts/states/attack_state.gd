@@ -17,7 +17,11 @@ func enter(_prev):
 	player.sprite.play(animation)
 	player.sprite.animation_finished.connect(_on_finished, CONNECT_ONE_SHOT)
 	
-	_spawn_attack_hitbox(player.attack_direction)
+	
+	_spawn_attack_hitbox.rpc_id(
+		1,
+		player.attack_direction
+	)
 	
 func _on_finished():
 	var next := (
@@ -28,7 +32,11 @@ func _on_finished():
 
 	player.fsm.change_state(next)
 
+@rpc("any_peer", "call_local", "reliable")
 func _spawn_attack_hitbox(direction: Vector2) -> void:
+	if !multiplayer.is_server():
+		return;
+	
 	# Spawn hitbox
 	hitbox = preload("res://scenes/hitbox.tscn").instantiate()
 	

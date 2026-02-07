@@ -14,12 +14,7 @@ func is_hostile_to(other: Entity) -> bool:
 		return false
 	return faction.is_hostile_to(other.faction)
 
-@rpc("any_peer", "call_local", "reliable")
-func request_damage(amount: int, source_path: NodePath) -> void:
-	if !multiplayer.is_server():
-		return
-
-	var source := get_node_or_null(source_path) as Entity
+func request_damage(amount: int, source: Entity) -> void:
 	if source and not source.is_hostile_to(self):
 		return
 
