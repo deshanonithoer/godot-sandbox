@@ -945,6 +945,7 @@ unique_name_in_owner = true
 offset_left = -16.0
 offset_right = 15.0
 offset_bottom = 13.0
+text = "Shano (80)"
 label_settings = SubResource("LabelSettings_f1ej7")
 horizontal_alignment = 1
 vertical_alignment = 1
