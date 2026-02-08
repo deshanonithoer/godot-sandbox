@@ -19,7 +19,7 @@ func enter(_prev):
 	
 	
 	_spawn_attack_hitbox.rpc_id(
-		1,
+		NetworkManager.SERVER_PEER_ID,
 		player.attack_direction
 	)
 	

@@ -3,6 +3,7 @@ extends Node
 signal peer_connected(peer_id: int)
 signal peer_disconnected(peer_id: int)
 
+const SERVER_PEER_ID = 1
 const MAX_PLAYERS = 16
 
 var is_joining := false

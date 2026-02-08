@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://ccwo48indu1eu"]
+[gd_scene load_steps=129 format=3 uid="uid://ccwo48indu1eu"]
 
 [ext_resource type="Script" uid="uid://cu28a47w8wnu0" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://3mwxvcv6dydt" path="res://scripts/data/factions/player_faction.tres" id="2_f1ej7"]
@@ -14,6 +14,9 @@
 [ext_resource type="Script" uid="uid://67edu5vs5oap" path="res://scripts/states/movement_state.gd" id="10_d2wvv"]
 [ext_resource type="Script" uid="uid://d3e13opot53uh" path="res://scripts/components/state_machine.gd" id="12_3v2ag"]
 [ext_resource type="Script" uid="uid://br24sioo5jgmr" path="res://scripts/components/damageable.gd" id="13_jej6c"]
+[ext_resource type="Script" uid="uid://dljieisjcs837" path="res://scripts/inventory/inventory_controller.gd" id="15_qfm1y"]
+[ext_resource type="Script" uid="uid://3g6i0fsry787" path="res://scripts/inventory/inventory_container.gd" id="16_fulsm"]
+[ext_resource type="Script" uid="uid://csn7lx5r4kyyc" path="res://scripts/inventory/hotbar_slot_references.gd" id="17_4r5pv"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f1ej7"]
 properties/0/path = NodePath(".:position")
@@ -950,3 +953,14 @@ label_settings = SubResource("LabelSettings_f1ej7")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Inventory" type="Node" parent="."]
+
+[node name="InventoryController" type="Node" parent="Inventory"]
+script = ExtResource("15_qfm1y")
+
+[node name="InventoryContainer" type="Node" parent="Inventory"]
+script = ExtResource("16_fulsm")
+
+[node name="HotbarSlotReferences" type="Node" parent="Inventory"]
+script = ExtResource("17_4r5pv")

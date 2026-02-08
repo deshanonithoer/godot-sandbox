@@ -10,6 +10,8 @@ extends Entity
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: StateMachine = %StateMachine
 
+@onready var inventory_controller: InventoryController = $InventoryController
+
 #region Player state management
 
 @export var player_name: String
@@ -57,7 +59,7 @@ func _unhandled_input(_event):
 	# Send input intent to the authority (server).
 	# Using unreliable RPC because this is high-frequency data.
 	_send_input.rpc_id(
-		1,
+		NetworkManager.SERVER_PEER_ID,
 		input_direction, 
 		wants_sprint, 
 		wants_attack, 
@@ -91,6 +93,12 @@ func _physics_process(delta: float) -> void:
 	fsm.physics_update(delta)
 	
 #endregion
+
+func request_use_item() -> void:
+	inventory_controller.request_use_selected_hotbar_item()
+	
+func request_move_slot(source_slot_index: int, target_slot_index: int) -> void:
+	inventory_controller.request_move_inventory_slot(source_slot_index, target_slot_index)
 
 #region Public player helper methods
 func consume_attack() -> bool:
