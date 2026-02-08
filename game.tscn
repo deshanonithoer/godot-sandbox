@@ -17,7 +17,7 @@ player_scene = ExtResource("4_fc0e3")
 [node name="Players" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="Menu" parent="." instance=ExtResource("1_80nbo")]
+[node name="MultiplayerMenu" parent="." instance=ExtResource("1_80nbo")]
 unique_name_in_owner = true
 position = Vector2(0, 1)
 
@@ -26,5 +26,5 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(576, 288)
 
-[connection signal="host_game" from="Menu" to="." method="_on_menu_host_game"]
-[connection signal="join_game" from="Menu" to="." method="_on_menu_join_game"]
+[connection signal="host_game" from="MultiplayerMenu" to="." method="_on_menu_host_game"]
+[connection signal="join_game" from="MultiplayerMenu" to="." method="_on_menu_join_game"]
