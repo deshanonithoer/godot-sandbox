@@ -10,7 +10,7 @@ func enter(_prev):
 	player.consume_attack()
 	player.velocity = Vector2.ZERO
 	
-	var resolved = player._resolve_direction(player.attack_direction)
+	var resolved = player.resolve_direction(player.attack_direction)
 	var animation = player_animations.animations[resolved][StateEnum.Value.ATTACK]
 		
 	player.sprite.stop()

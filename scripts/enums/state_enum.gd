@@ -6,4 +6,5 @@ enum Value {
 	WALK,
 	ATTACK,
 	RUN,
+	HURT
 }

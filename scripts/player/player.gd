@@ -7,10 +7,12 @@ extends Entity
 @onready var run_state: RunState = $Scripts/StateMachine/RunState
 @onready var movement_state: MovementState = $Scripts/StateMachine/MovementState
 @onready var idle_state: IdleState = $Scripts/StateMachine/IdleState
+@onready var hurt_state: HurtState = $Scripts/StateMachine/HurtState
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: StateMachine = %StateMachine
+@onready var camera: Camera2D = $Camera
 
-@onready var inventory_controller: InventoryController = $InventoryController
+@onready var inventory_controller: InventoryController = $Inventory/InventoryController
 
 #region Player state management
 
@@ -24,6 +26,7 @@ var last_resolved_direction: DirectionEnum.Value = DirectionEnum.Value.DOWN
 @export_storage var attack_direction := Vector2.ZERO
 
 func _ready():
+	camera.enabled = (multiplayer.get_unique_id() == id) 
 	name_tag.text = player_name
 	
 	fsm.entity = self
@@ -32,6 +35,7 @@ func _ready():
 		StateEnum.Value.WALK: walk_state,
 		StateEnum.Value.RUN: run_state,
 		StateEnum.Value.ATTACK: attack_state,
+		StateEnum.Value.HURT: hurt_state
 	}
 
 	for state in fsm.states.values():
@@ -100,6 +104,17 @@ func request_use_item() -> void:
 func request_move_slot(source_slot_index: int, target_slot_index: int) -> void:
 	inventory_controller.request_move_inventory_slot(source_slot_index, target_slot_index)
 
+func apply_damage(amount: int, hit_direction: Vector2) -> void:
+	# Apply damage to health
+	health -= amount
+	if health <= 0:
+		died.emit()
+		_die()
+		
+	# Switch to hurt state
+	last_resolved_direction = resolve_direction(hit_direction)
+	fsm.change_state(StateEnum.Value.HURT)
+
 #region Public player helper methods
 func consume_attack() -> bool:
 	if wants_attack:
@@ -107,7 +122,7 @@ func consume_attack() -> bool:
 		return true
 	return false
 	
-func _resolve_direction(dir: Vector2) -> DirectionEnum.Value:
+func resolve_direction(dir: Vector2) -> DirectionEnum.Value:
 	# Horizontal
 	if abs(dir.x) > abs(dir.y):
 		return DirectionEnum.Value.LEFT if dir.x < 0 else DirectionEnum.Value.RIGHT

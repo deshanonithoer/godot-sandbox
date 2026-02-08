@@ -30,7 +30,7 @@ func _physics_process(delta):
 
 #region Public player helper methods
 
-func _resolve_direction(dir: Vector2) -> DirectionEnum.Value:
+func resolve_direction(dir: Vector2) -> DirectionEnum.Value:
 	# Horizontal
 	if abs(dir.x) > abs(dir.y):
 		return DirectionEnum.Value.LEFT if dir.x < 0 else DirectionEnum.Value.RIGHT

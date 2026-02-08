@@ -3,7 +3,7 @@ extends Node
 
 @export var item_definitions_by_id: Dictionary = {}
 
-@onready var player: Player = get_parent()
+@onready var player: Node = get_parent()
 @onready var inventory_container: InventoryContainer = player.get_node("InventoryContainer")
 @onready var hotbar_references: HotbarSlotReferences = player.get_node("HotbarSlotReferences")
 
