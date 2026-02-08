@@ -1,12 +1,12 @@
 [gd_scene load_steps=119 format=3 uid="uid://dj1ggmvrrl8st"]
 
-[ext_resource type="Script" uid="uid://bi8tk7s8ph1l0" path="res://scripts/enemy/enemy.gd" id="1_md484"]
+[ext_resource type="Script" uid="uid://bi8tk7s8ph1l0" path="res://scripts/entities/enemy/enemy.gd" id="1_md484"]
 [ext_resource type="Resource" uid="uid://s1311p4rdxa8" path="res://scripts/data/factions/enemy_faction.tres" id="2_ipns3"]
 [ext_resource type="Texture2D" uid="uid://cgai2ht0va70a" path="res://assets/sprites/Character/naked-man/Sword_attack_without_shadow.png" id="3_s1ycm"]
 [ext_resource type="Texture2D" uid="uid://cahun45kgoknq" path="res://assets/sprites/Character/naked-man/Unarmed_Idle_without_shadow.png" id="4_shcg2"]
 [ext_resource type="Texture2D" uid="uid://ct2ow1dixihp1" path="res://assets/sprites/Character/naked-man/Unarmed_Run_without_shadow.png" id="5_ile5s"]
 [ext_resource type="Texture2D" uid="uid://dcvngymdch1aw" path="res://assets/sprites/Character/naked-man/Unarmed_Walk_without_shadow.png" id="6_1x4g4"]
-[ext_resource type="Script" uid="uid://cw5w4e3u8bk6l" path="res://scripts/player/player_animation.gd" id="7_2pwtc"]
+[ext_resource type="Script" uid="uid://cw5w4e3u8bk6l" path="res://scripts/entities/player/player_animation.gd" id="7_2pwtc"]
 [ext_resource type="Script" uid="uid://d3e13opot53uh" path="res://scripts/components/state_machine.gd" id="8_rogs8"]
 [ext_resource type="Script" uid="uid://br24sioo5jgmr" path="res://scripts/components/damageable.gd" id="14_t3vcr"]
 

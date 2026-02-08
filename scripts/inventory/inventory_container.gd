@@ -3,7 +3,7 @@ extends Node
 
 signal inventory_changed(inventory_snapshot: Array)
 
-@export var total_slot_count: int = 30
+@export var total_slot_count: int = 15
 
 var item_definitions_by_id: Dictionary = {}
 var slot_contents: Array = []

@@ -1,6 +1,6 @@
 [gd_scene load_steps=151 format=3 uid="uid://ccwo48indu1eu"]
 
-[ext_resource type="Script" uid="uid://cu28a47w8wnu0" path="res://scripts/player/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://cu28a47w8wnu0" path="res://scripts/entities/player/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://3mwxvcv6dydt" path="res://scripts/data/factions/player_faction.tres" id="2_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://cahun45kgoknq" path="res://assets/sprites/Character/naked-man/Unarmed_Idle_without_shadow.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dcvngymdch1aw" path="res://assets/sprites/Character/naked-man/Unarmed_Walk_without_shadow.png" id="3_dqkch"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://bkaje1gkgx41q" path="res://scripts/states/idle_state.gd" id="6_smehm"]
 [ext_resource type="Script" uid="uid://8kthqlcovnh4" path="res://scripts/states/walk_state.gd" id="7_ur7pv"]
 [ext_resource type="Script" uid="uid://chwvrfuvn6dma" path="res://scripts/states/attack_state.gd" id="8_y4r1p"]
-[ext_resource type="Script" uid="uid://cw5w4e3u8bk6l" path="res://scripts/player/player_animation.gd" id="9_ur7pv"]
+[ext_resource type="Script" uid="uid://cw5w4e3u8bk6l" path="res://scripts/entities/player/player_animation.gd" id="9_ur7pv"]
 [ext_resource type="Script" uid="uid://dhokwwp7qxfsp" path="res://scripts/states/run_state.gd" id="9_y4r1p"]
 [ext_resource type="Script" uid="uid://67edu5vs5oap" path="res://scripts/states/movement_state.gd" id="10_d2wvv"]
 [ext_resource type="Script" uid="uid://d3e13opot53uh" path="res://scripts/components/state_machine.gd" id="12_3v2ag"]
@@ -1081,6 +1081,7 @@ sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"hurt_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 y_sort_enabled = true
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_4r5pv")
@@ -1125,8 +1126,6 @@ move_speed_multiplier = null
 
 [node name="MovementState" type="Node" parent="Scripts/StateMachine"]
 script = ExtResource("10_d2wvv")
-speed = null
-move_speed_multiplier = null
 
 [node name="HurtState" type="Node" parent="Scripts/StateMachine"]
 script = ExtResource("15_4r5pv")

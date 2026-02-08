@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 NetworkManager="*res://network/network_manager.gd"
 
+[display]
+
+window/size/always_on_top=true
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/script_splitter/plugin.cfg")
