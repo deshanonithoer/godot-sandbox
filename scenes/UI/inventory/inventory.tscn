@@ -3,119 +3,125 @@
 [ext_resource type="Script" uid="uid://c8tqtnh4mu2ra" path="res://scripts/inventory/inventory_ui.gd" id="1_22sjf"]
 [ext_resource type="PackedScene" uid="uid://3ue3kmmro2p2" path="res://scenes/UI/inventory/slot_ui.tscn" id="1_msrby"]
 
-[node name="Inventory" type="Node2D"]
+[node name="InventoryWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("1_22sjf")
+slot_ui_scene = ExtResource("1_msrby")
 
-[node name="BackpackContainer" type="GridContainer" parent="."]
-offset_left = 424.0
-offset_top = 168.0
-offset_right = 760.0
-offset_bottom = 368.0
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Margin" type="Control" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+
+[node name="BackpackGrid" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer/BackpackGrid"]
+layout_mode = 2
 columns = 5
 
-[node name="Slot" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 0
 
-[node name="Slot2" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot2" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 1
 
-[node name="Slot3" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot3" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 2
 
-[node name="Slot4" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot4" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 3
 
-[node name="Slot5" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot5" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 4
 
-[node name="Slot6" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot6" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 5
 
-[node name="Slot7" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot7" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 6
 
-[node name="Slot8" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot8" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 7
 
-[node name="Slot9" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot9" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 8
 
-[node name="Slot10" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot10" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 9
 
-[node name="Slot11" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot11" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 10
 
-[node name="Slot12" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot12" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 11
 
-[node name="Slot13" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot13" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 12
 
-[node name="Slot14" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot14" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 13
 
-[node name="Slot15" parent="BackpackContainer" instance=ExtResource("1_msrby")]
+[node name="BackpackSlot15" parent="Panel/VBoxContainer/BackpackGrid/GridContainer" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 14
 
-[node name="HotbarContainer" type="GridContainer" parent="."]
-offset_left = 424.0
-offset_top = 576.0
-offset_right = 760.0
-offset_bottom = 640.0
-columns = 5
+[node name="Margin2" type="Control" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 3.68
 
-[node name="Slot" parent="HotbarContainer" instance=ExtResource("1_msrby")]
+[node name="HotbarRow" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HotbarSlot" parent="Panel/VBoxContainer/HotbarRow" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 0
 
-[node name="Slot2" parent="HotbarContainer" instance=ExtResource("1_msrby")]
+[node name="HotbarSlot2" parent="Panel/VBoxContainer/HotbarRow" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 1
 
-[node name="Slot3" parent="HotbarContainer" instance=ExtResource("1_msrby")]
+[node name="HotbarSlot3" parent="Panel/VBoxContainer/HotbarRow" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 2
 
-[node name="Slot4" parent="HotbarContainer" instance=ExtResource("1_msrby")]
+[node name="HotbarSlot4" parent="Panel/VBoxContainer/HotbarRow" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 3
 
-[node name="Slot5" parent="HotbarContainer" instance=ExtResource("1_msrby")]
+[node name="HotbarSlot5" parent="Panel/VBoxContainer/HotbarRow" instance=ExtResource("1_msrby")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-slot_index = 3
+
+[node name="Margin3" type="Control" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.18

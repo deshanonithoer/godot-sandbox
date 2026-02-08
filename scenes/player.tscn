@@ -1,4 +1,4 @@
-[gd_scene load_steps=151 format=3 uid="uid://ccwo48indu1eu"]
+[gd_scene load_steps=152 format=3 uid="uid://ccwo48indu1eu"]
 
 [ext_resource type="Script" uid="uid://cu28a47w8wnu0" path="res://scripts/entities/player/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://3mwxvcv6dydt" path="res://scripts/data/factions/player_faction.tres" id="2_f1ej7"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dljieisjcs837" path="res://scripts/inventory/inventory_controller.gd" id="15_qfm1y"]
 [ext_resource type="Script" uid="uid://3g6i0fsry787" path="res://scripts/inventory/inventory_container.gd" id="16_fulsm"]
 [ext_resource type="Script" uid="uid://csn7lx5r4kyyc" path="res://scripts/inventory/hotbar_slot_references.gd" id="17_4r5pv"]
+[ext_resource type="Resource" uid="uid://c7utisc0vpbr6" path="res://scripts/data/item/stone_sword.tres" id="18_60mlk"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f1ej7"]
 properties/0/path = NodePath(".:position")
@@ -1149,6 +1150,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="InventoryController" type="Node" parent="Inventory"]
 script = ExtResource("15_qfm1y")
+item_definitions_by_id = {
+&"STONE_SWORD": ExtResource("18_60mlk")
+}
 
 [node name="InventoryContainer" type="Node" parent="Inventory"]
 script = ExtResource("16_fulsm")

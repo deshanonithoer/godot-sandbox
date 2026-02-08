@@ -3,7 +3,7 @@ class_name HotbarSlotReferences
 
 signal hotbar_changed()
 
-@export var hotbar_slot_count: int = 10
+@export var hotbar_slot_count: int = 5
 
 # hotbar_slot_index -> inventory_slot_index
 var hotbar_to_inventory_slot_map: Array[int] = []

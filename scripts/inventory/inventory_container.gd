@@ -204,7 +204,6 @@ func move_or_merge_slot(source_slot_index: int, target_slot_index: int) -> bool:
 	_emit_inventory_changed()
 	return true
 
-
 func split_stack_into_empty_slot(source_slot_index: int, split_quantity: int, empty_target_slot_index: int) -> bool:
 	if split_quantity <= 0:
 		return false
