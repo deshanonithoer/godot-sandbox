@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://3ue3kmmro2p2"]
+
+[ext_resource type="Script" uid="uid://bpxqcknjpuenj" path="res://scripts/inventory/slot_ui.gd" id="1_6usns"]
+[ext_resource type="Texture2D" uid="uid://bn34el6c25peu" path="res://assets/sprites/Inventory/inventory_slot_group.png" id="1_tb4qf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfd3l"]
+font_size = 12
+outline_size = 4
+outline_color = Color(0.043039218, 0.043039143, 0.04303913, 1)
+
+[node name="Panel" type="Panel"]
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("1_6usns")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_tb4qf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="QuantityLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 23.0
+offset_right = 64.0
+offset_bottom = 40.0
+label_settings = SubResource("LabelSettings_nfd3l")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HighlightPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0

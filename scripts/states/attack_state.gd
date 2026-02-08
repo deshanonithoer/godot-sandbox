@@ -10,7 +10,7 @@ func enter(_prev):
 	player.consume_attack()
 	player.velocity = Vector2.ZERO
 	
-	var resolved = player._resolve_direction(player.attack_direction)
+	var resolved = player.resolve_direction(player.attack_direction)
 	var animation = player_animations.animations[resolved][StateEnum.Value.ATTACK]
 		
 	player.sprite.stop()
@@ -19,7 +19,7 @@ func enter(_prev):
 	
 	
 	_spawn_attack_hitbox.rpc_id(
-		1,
+		NetworkManager.SERVER_PEER_ID,
 		player.attack_direction
 	)
 	

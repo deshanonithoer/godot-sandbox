@@ -22,7 +22,7 @@ func physics_update(_delta):
 	player.velocity = player.input_direction * speed * move_speed_multiplier
 	player.move_and_slide()
 	
-	var resolved := player._resolve_direction(player.input_direction)
+	var resolved := player.resolve_direction(player.input_direction)
 	player.last_resolved_direction = resolved
 	
 	var walk_animation = player_animations.animations[resolved][animation_state]

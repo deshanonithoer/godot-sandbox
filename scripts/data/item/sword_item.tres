@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3 uid="uid://b46ienyuibeb3"]
+
+[ext_resource type="Script" uid="uid://c544y65b4hjws" path="res://scripts/data/item/item.gd" id="1_trb63"]
+
+[resource]
+script = ExtResource("1_trb63")
+id = &"STONE_SWORD"
+name = "Stone Sword"
+category = 1
+use_behaviour = 3
+damage_amount = 20
+metadata/_custom_type_script = "uid://c544y65b4hjws"

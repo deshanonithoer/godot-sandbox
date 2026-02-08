@@ -18,9 +18,16 @@ func request_damage(amount: int, source: Entity) -> void:
 	if source and not source.is_hostile_to(self):
 		return
 
-	_apply_damage(amount)
+	# Get direction the source was looking in
+	var hit_direction: Vector2 = (source.global_position - global_position)
 	
-func _apply_damage(amount: int) -> void:
+	# If they're on the exact same position, avoid NaN / weirdness
+	if hit_direction.length_squared() > 0.0001:
+		hit_direction = hit_direction.normalized()
+		
+	apply_damage(amount, hit_direction)
+	
+func apply_damage(amount: int, hit_direction: Vector2) -> void:
 	health -= amount
 	if health <= 0:
 		died.emit()

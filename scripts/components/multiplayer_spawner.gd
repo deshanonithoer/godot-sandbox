@@ -43,7 +43,7 @@ func _spawn_player_server(peer_id: int) -> void:
 	player.name = player_name
 	player.id = peer_id
 
-	player.set_multiplayer_authority(1, true)
+	player.set_multiplayer_authority(NetworkManager.SERVER_PEER_ID, true)
 	
 	players.add_child(player)
 
