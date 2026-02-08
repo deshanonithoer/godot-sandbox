@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://bpxqcknjpuenj" path="res://scripts/inventory/slot_ui.gd" id="1_6usns"]
 [ext_resource type="Texture2D" uid="uid://bn34el6c25peu" path="res://assets/sprites/Inventory/inventory_slot_group.png" id="1_tb4qf"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_nfd3l"]
+[sub_resource type="LabelSettings" id="LabelSettings_tb4qf"]
 font_size = 12
 outline_size = 4
 outline_color = Color(0.043039218, 0.043039143, 0.04303913, 1)
 
-[node name="Panel" type="Panel"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 64.0
 offset_bottom = 64.0
 script = ExtResource("1_6usns")
@@ -29,7 +31,7 @@ layout_mode = 0
 offset_top = 23.0
 offset_right = 64.0
 offset_bottom = 40.0
-label_settings = SubResource("LabelSettings_nfd3l")
+label_settings = SubResource("LabelSettings_tb4qf")
 horizontal_alignment = 1
 vertical_alignment = 2
 
