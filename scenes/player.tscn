@@ -1,9 +1,9 @@
 [gd_scene load_steps=152 format=3 uid="uid://ccwo48indu1eu"]
 
 [ext_resource type="Script" uid="uid://cu28a47w8wnu0" path="res://scripts/entities/player/player.gd" id="1_g2els"]
-[ext_resource type="Resource" uid="uid://3mwxvcv6dydt" path="res://scripts/data/factions/player_faction.tres" id="2_f1ej7"]
+[ext_resource type="Resource" uid="uid://3mwxvcv6dydt" path="res://scripts/resources/factions/player_faction.tres" id="2_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://cahun45kgoknq" path="res://assets/sprites/Character/naked-man/Unarmed_Idle_without_shadow.png" id="2_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://dcvngymdch1aw" path="res://assets/sprites/Character/naked-man/Unarmed_Walk_without_shadow.png" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://h4nj854frwef" path="res://assets/sprites/Character/naked-man/Unarmed_Walk_without_shadow.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://ct2ow1dixihp1" path="res://assets/sprites/Character/naked-man/Unarmed_Run_without_shadow.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bj0nt8kiar4jy" path="res://assets/sprites/Character/naked-man/Unarmed_Hurt_without_shadow.png" id="4_fulsm"]
 [ext_resource type="Texture2D" uid="uid://cgai2ht0va70a" path="res://assets/sprites/Character/naked-man/Sword_attack_without_shadow.png" id="4_qlg0r"]
@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://dljieisjcs837" path="res://scripts/inventory/inventory_controller.gd" id="15_qfm1y"]
 [ext_resource type="Script" uid="uid://3g6i0fsry787" path="res://scripts/inventory/inventory_container.gd" id="16_fulsm"]
 [ext_resource type="Script" uid="uid://csn7lx5r4kyyc" path="res://scripts/inventory/hotbar_slot_references.gd" id="17_4r5pv"]
-[ext_resource type="Resource" uid="uid://c7utisc0vpbr6" path="res://scripts/data/item/stone_sword.tres" id="18_60mlk"]
+[ext_resource type="Resource" uid="uid://c7utisc0vpbr6" path="res://scripts/resources/item/stone_sword.tres" id="18_60mlk"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f1ej7"]
 properties/0/path = NodePath(".:position")
